@@ -43,6 +43,13 @@ function main() {
         style[mxConstants.STYLE_FILLCOLOR] = 'white';
         style[mxConstants.STYLE_STROKECOLOR] = 'black';
         style[mxConstants.STYLE_STROKEWIDTH] = 1;
+        style[mxConstants.STYLE_FONTCOLOR] = 'black';
+        style[mxConstants.STYLE_FONTFAMILY] = 'arial';
+        style[mxConstants.STYLE_FONTSIZE] = 20;
+
+        let style1 = graph.getStylesheet().getDefaultEdgeStyle();
+        style1[mxConstants.STYLE_FILLCOLOR] = 'black';
+        style1[mxConstants.STYLE_STROKECOLOR] = 'black';
 
         // Enabling alignment relating to another primitives
         mxGraphHandler.prototype.guidesEnabled = true;
