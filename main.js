@@ -37,6 +37,16 @@ function main() {
         let keyHandler = new mxKeyHandler(graph);
         let rubberband = new mxRubberband(graph);
 
+        // Setting the default style of vertexes
+        let style = graph.getStylesheet().getDefaultVertexStyle();
+        style[mxConstants.STYLE_SHAPE] = 'label';
+        style[mxConstants.STYLE_FILLCOLOR] = 'white';
+        style[mxConstants.STYLE_STROKECOLOR] = 'black';
+        style[mxConstants.STYLE_STROKEWIDTH] = 1;
+
+        // Enabling alignment relating to another primitives
+        mxGraphHandler.prototype.guidesEnabled = true;
+
         let addVertex = function(icon, w, h, style)  {
             let vertex = new mxCell(null, new mxGeometry(0, 0, w, h), style);
             vertex.setVertex(true);
