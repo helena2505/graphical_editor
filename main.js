@@ -47,6 +47,7 @@ function main() {
         style[mxConstants.STYLE_FONTFAMILY] = 'arial';
         style[mxConstants.STYLE_FONTSIZE] = 20;
 
+        // Setting the default style of edges
         let style1 = graph.getStylesheet().getDefaultEdgeStyle();
         style1[mxConstants.STYLE_FILLCOLOR] = 'black';
         style1[mxConstants.STYLE_STROKECOLOR] = 'black';
@@ -112,7 +113,23 @@ function addToolbarItem(graph, toolbar, prototype, image)  {
         }
     });
 
-    mxUtils.makeDraggable(img, graph, funct);
+    // Creating the element which is going to be showed while dragging
+    let dragElt = document.createElement('div');
+    dragElt.style.border = 'dashed black 1px';
+    dragElt.style.width = '80px';
+    dragElt.style.height = '50px';
+
+    mxUtils.makeDraggable(img, graph, funct, dragElt, null, null, graph.autoscroll, true);
 
     return img;
 }
+
+/*
+Нужно сделать:
+1. Удаление выделенного элемента по нажатию на клавишу delete
+2. Откат одной операции по нажатию на кнопку undo или по ctrl+Z
+3. Нормальный drag & drop (чтобы при перенесении можно было сразу выравнивать) - сделано
+4. Позиционирование начала стрелки по контуру фигуры
+5. Научиться вставлять круг и квадрат
+6. Вставлять стрелку (связь) из меню примитивов
+ */
