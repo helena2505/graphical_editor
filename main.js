@@ -95,6 +95,13 @@ function main() {
             }
         }
 
+        let keyHandler1 = new mxKeyHandler(graph);
+        keyHandler1.bindKey(46, function(evt) {
+            if (graph.isEnabled()) {
+                graph.removeCells();
+            }
+        });
+
     }
 }
 
