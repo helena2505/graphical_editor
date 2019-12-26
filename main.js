@@ -74,6 +74,21 @@ function main() {
         addVertex('pictures1/ellipse.svg', 80, 50, 'shape=ellipse');
         addVertex('pictures1/diamond.svg', 80, 50, 'shape=rhombus');
         addVertex('pictures1/triangle.svg', 80, 50, 'shape=triangle');
+
+        // Setting undo and redo functions
+        let undoManager = new mxUndoManager();
+        let listener = function(sender, event) {
+            undoManager.undoableEditHappened(event.getProperty('edit'));
+        };
+        graph.getModel().addListener(mxEvent.UNDO, listener);
+        graph.getView().addListener(mxEvent.UNDO, listener);
+        tbContainer.appendChild(mxUtils.button('Undo', function() {
+            undoManager.undo();
+        }));
+        tbContainer.appendChild(mxUtils.button('Redo', function() {
+            undoManager.redo();
+        }));
+
     }
 }
 
@@ -132,4 +147,5 @@ function addToolbarItem(graph, toolbar, prototype, image)  {
 4. Позиционирование начала стрелки по контуру фигуры
 5. Научиться вставлять круг и квадрат
 6. Вставлять стрелку (связь) из меню примитивов
+7. Копирование выделенных элементов
  */
