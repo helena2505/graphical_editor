@@ -8,6 +8,7 @@ function main() {
         // Defines an icon for creating new connections in the connection handler.
         // This will automatically disable the highlighting of the source vertex.
         mxConnectionHandler.prototype.connectImage = new mxImage('mxgraph-4.0.6/javascript/src/images/connector.gif', 16, 16);
+        mxVertexHandler.prototype.rotationEnabled = true;
 
         let tbContainer = document.getElementById('palette-zone');
 
