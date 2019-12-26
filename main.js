@@ -89,6 +89,12 @@ function main() {
             undoManager.redo();
         }));
 
+        window.onkeyup = function(event) {
+            if (event.keyCode === 90) { // Checking that pressing ctrl+z has happened indeed
+                undoManager.undo(); // Undo an operation
+            }
+        }
+
     }
 }
 
