@@ -93,6 +93,15 @@ function main() {
             if (event.keyCode === 90) { // Checking that pressing ctrl+z has happened indeed
                 undoManager.undo(); // Undo an operation
             }
+            event = event || window.event;
+            let key = event.which || event.keyCode; // keyCode detection
+            let ctrl = event.ctrlKey ? event.ctrlKey : ((key === 17) ? true : false); // ctrl detection
+
+            if (key == 86 && ctrl) {
+                mxClipboard.paste(graph);
+            } else if (key == 67 && ctrl) {
+                mxClipboard.copy(graph);
+            }
         }
 
         // Setting the functions for deleting elements
@@ -107,6 +116,44 @@ function main() {
             }
         }));
 
+        mxClipboard.copy = function(graph, cells) {
+            cells = cells || graph.getSelectionCells();
+            let result = graph.getExportableCells(cells);
+
+            mxClipboard.parents = new Object();
+
+            for (var i = 0; i < result.length; i++)  {
+                mxClipboard.parents[i] = graph.model.getParent(cells[i]);
+            }
+
+            mxClipboard.insertCount = 1;
+            mxClipboard.setCells(graph.cloneCells(result));
+
+            return result;
+        };
+
+        mxClipboard.paste = function(graph) {
+            if (!mxClipboard.isEmpty()) {
+                var cells = graph.getImportableCells(mxClipboard.getCells());
+                var delta = mxClipboard.insertCount * mxClipboard.STEPSIZE;
+                var parent = graph.getDefaultParent();
+
+                graph.model.beginUpdate();
+                try {
+                    for (var i = 0; i < cells.length; i++) {
+                        var tmp = (mxClipboard.parents != null && graph.model.contains(mxClipboard.parents[i])) ?
+                            mxClipboard.parents[i] : parent;
+                        cells[i] = graph.importCells([cells[i]], delta, delta, tmp)[0];
+                    }
+                } finally {
+                    graph.model.endUpdate();
+                }
+
+                // Increments the counter and selects the inserted cells
+                mxClipboard.insertCount++;
+                graph.setSelectionCells(cells);
+            }
+        };
     }
 }
 
