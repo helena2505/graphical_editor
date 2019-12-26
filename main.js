@@ -95,12 +95,18 @@ function main() {
             }
         }
 
+        // Setting the functions for deleting elements
         let keyHandler1 = new mxKeyHandler(graph);
         keyHandler1.bindKey(46, function(evt) {
             if (graph.isEnabled()) {
                 graph.removeCells();
             }
         });
+        tbContainer.appendChild(mxUtils.button('Delete node', function(event) {
+            if (graph.isEnabled()) {
+                graph.removeCells();
+            }
+        }));
 
     }
 }
