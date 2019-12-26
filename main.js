@@ -71,10 +71,10 @@ function main() {
         };
 
         addVertex('pictures1/rect.svg', 80, 50, '');
-        addVertex('pictures1/round_rect.svg', 80, 50, 'shape=rounded');
-        addVertex('pictures1/ellipse.svg', 80, 50, 'shape=ellipse');
-        addVertex('pictures1/diamond.svg', 80, 50, 'shape=rhombus');
-        addVertex('pictures1/triangle.svg', 80, 50, 'shape=triangle');
+        addVertex('pictures1/round_rect.svg', 80, 50, 'shape=rounded;perimeter=roundedPerimeter');
+        addVertex('pictures1/ellipse.svg', 80, 50, 'shape=ellipse;perimeter=ellipsePerimeter');
+        addVertex('pictures1/diamond.svg', 80, 50, 'shape=rhombus;perimeter=rhombusPerimeter');
+        addVertex('pictures1/triangle.svg', 80, 50, 'shape=triangle;perimeter=trianglePerimeter');
 
         // Setting undo and redo functions
         let undoManager = new mxUndoManager();
