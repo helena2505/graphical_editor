@@ -137,6 +137,21 @@ function main() {
                 graph.removeCells();
             }
         }));
+
+        // Setting functions for saving elements
+        let encoder = new mxCodec();
+        tbContainer.appendChild(mxUtils.button('Save', function() {
+            let result = encoder.encode(graph.getModel());
+            let xml = mxUtils.getXml(result);
+            console.log(xml);
+        }));
+
+        tbContainer.appendChild(mxUtils.button('Read', function() {
+            let xmlString = '<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="2" style="" vertex="1" parent="1"><mxGeometry x="430" y="200" width="80" height="50" as="geometry"/></mxCell><mxCell id="3" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1"><mxGeometry x="440" y="350" width="50" height="50" as="geometry"/></mxCell><mxCell id="4" edge="1" parent="1" source="2" target="3"><mxGeometry relative="1" as="geometry"/></mxCell></root></mxGraphModel>\n';
+            let doc = mxUtils.parseXml(xmlString);
+            let codec = new mxCodec(doc);
+            codec.decode(doc.documentElement, graph.getModel());
+        }));
     }
 }
 
