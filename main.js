@@ -52,6 +52,7 @@ function main() {
         let style1 = graph.getStylesheet().getDefaultEdgeStyle();
         style1[mxConstants.STYLE_FILLCOLOR] = 'black';
         style1[mxConstants.STYLE_STROKECOLOR] = 'black';
+        style1[mxConstants.STYLE_STROKEWIDTH] = 5;
 
         // Enabling alignment relating to another primitives
         mxGraphHandler.prototype.guidesEnabled = true;
@@ -70,11 +71,29 @@ function main() {
             });
         };
 
+        let addEdge = function(icon, w, h, style)  {
+            let edge = new mxCell(null, new mxGeometry(0, 0, w, h), style);
+            edge.setEdge(true);
+            edge.setStyle(style);
+
+            let img1 = addToolbarItem(graph, toolbar, edge, icon);
+            img1.enabled = true;
+
+            graph.getSelectionModel().addListener(mxEvent.CHANGE, function() {
+                let tmp = graph.isSelectionEmpty();
+                mxUtils.setOpacity(img1, (tmp) ? 100 : 20);
+                img1.enabled = tmp;
+            });
+        };
+
         addVertex('pictures1/rect.svg', 80, 50, '');
         addVertex('pictures1/round_rect.svg', 80, 50, 'shape=rounded;perimeter=roundedPerimeter');
         addVertex('pictures1/ellipse.svg', 80, 50, 'shape=ellipse;perimeter=ellipsePerimeter');
         addVertex('pictures1/diamond.svg', 80, 50, 'shape=rhombus;perimeter=rhombusPerimeter');
         addVertex('pictures1/triangle.svg', 80, 50, 'shape=triangle;perimeter=trianglePerimeter');
+
+        addEdge('pictures1/line.svg', 80, 50, 'curved=1;endArrow=none;html=1;strokeWidth=2');
+        addEdge('pictures1/right_arrow.svg', 80, 50, 'curved=1;endArrow=classic;html=1;');
 
         // Setting undo and redo functions
         let undoManager = new mxUndoManager();
@@ -165,12 +184,18 @@ function addToolbarItem(graph, toolbar, prototype, image)  {
     let funct = function(graph, evt, cell, x, y) {
         graph.stopEditing(false);
 
-        let vertex = graph.getModel().cloneCell(prototype);
-        vertex.geometry.x = x;
-        vertex.geometry.y = y;
+        let curCell = graph.getModel().cloneCell(prototype);
+        if(prototype.isVertex()) {
+            curCell.geometry.x = x;
+            curCell.geometry.y = y;
+        }
+        else {
+            curCell.geometry.setTerminalPoint(new mxPoint(x, y), true);
+            curCell.geometry.setTerminalPoint(new mxPoint(x+80, y), false);
+        }
 
-        graph.addCell(vertex);
-        graph.setSelectionCell(vertex);
+        graph.addCell(curCell);
+        graph.setSelectionCell(curCell);
     }
 
     // Creates the image which is used as the drag icon (preview)
