@@ -7,7 +7,7 @@ function main() {
     } else {
         // Defines an icon for creating new connections in the connection handler.
         // This will automatically disable the highlighting of the source vertex.
-        mxConnectionHandler.prototype.connectImage = new mxImage('mxgraph-4.0.6/javascript/src/images/connector.gif', 16, 16);
+        mxConnectionHandler.prototype.connectImage = new mxImage('mxgraph-4.0.6/javascript/src/images/connector.gif', 16, 16)
         mxVertexHandler.prototype.rotationEnabled = true;
 
         let tbContainer = document.getElementById('palette-zone');
@@ -32,7 +32,7 @@ function main() {
 
         // Enables new connections in the graph
         graph.setConnectable(true);
-        graph.setMultigraph(false);
+        graph.setMultigraph(true);
 
         // Stops editing on enter or escape keypress
         let keyHandler = new mxKeyHandler(graph);
@@ -87,7 +87,7 @@ function main() {
         };
 
         addVertex('pictures1/rect.svg', 80, 50, '');
-        addVertex('pictures1/text.svg', 80, 50, 'textDescription=text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;');
+        addVertex('pictures1/text.svg', 80, 50, 'text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;');
         addVertex('pictures1/square.svg', 50, 50, 'whiteSpace=wrap;html=1;aspect=fixed;');
         addVertex('pictures1/circ.svg', 50, 50, 'shape=ellipse;whiteSpace=wrap;html=1;aspect=fixed;perimeter=ellipsePerimeter');
         addVertex('pictures1/round_rect.svg', 80, 50, 'rounded=1;whiteSpace=wrap;html=1;');
@@ -98,6 +98,7 @@ function main() {
 
         addEdge('pictures1/line.svg', 80, 50, 'curved=1;endArrow=none;html=1;strokeWidth=2');
         addEdge('pictures1/right_arrow.svg', 80, 50, 'curved=1;endArrow=classic;html=1;');
+        addEdge('pictures1/bi_arrow.svg', 80, 50, 'curved=1;endArrow=classic;startArrow=classic;html=1;');
 
         // Setting undo and redo functions
         let undoManager = new mxUndoManager();
