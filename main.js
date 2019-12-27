@@ -87,8 +87,11 @@ function main() {
         };
 
         addVertex('pictures1/rect.svg', 80, 50, '');
-        addVertex('pictures1/round_rect.svg', 80, 50, 'shape=rounded;perimeter=roundedPerimeter');
+        addVertex('pictures1/square.svg', 50, 50, 'whiteSpace=wrap;html=1;aspect=fixed;');
+        addVertex('pictures1/circ.svg', 50, 50, 'shape=ellipse;whiteSpace=wrap;html=1;aspect=fixed;perimeter=ellipsePerimeter');
+        addVertex('pictures1/round_rect.svg', 80, 50, 'rounded=1;whiteSpace=wrap;html=1;');
         addVertex('pictures1/ellipse.svg', 80, 50, 'shape=ellipse;perimeter=ellipsePerimeter');
+        addVertex('pictures1/parell.svg', 80, 50, 'shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;');
         addVertex('pictures1/diamond.svg', 80, 50, 'shape=rhombus;perimeter=rhombusPerimeter');
         addVertex('pictures1/triangle.svg', 80, 50, 'shape=triangle;perimeter=trianglePerimeter');
 
