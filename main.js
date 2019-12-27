@@ -87,6 +87,7 @@ function main() {
         };
 
         addVertex('pictures1/rect.svg', 80, 50, '');
+        addVertex('pictures1/text.svg', 80, 50, 'textDescription=text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;');
         addVertex('pictures1/square.svg', 50, 50, 'whiteSpace=wrap;html=1;aspect=fixed;');
         addVertex('pictures1/circ.svg', 50, 50, 'shape=ellipse;whiteSpace=wrap;html=1;aspect=fixed;perimeter=ellipsePerimeter');
         addVertex('pictures1/round_rect.svg', 80, 50, 'rounded=1;whiteSpace=wrap;html=1;');
