@@ -137,45 +137,6 @@ function main() {
                 graph.removeCells();
             }
         }));
-
-        /*mxClipboard.copy = function(graph, cells) {
-            cells = cells || graph.getSelectionCells();
-            let result = graph.getExportableCells(cells);
-
-            mxClipboard.parents = new Object();
-
-            for (var i = 0; i < result.length; i++)  {
-                mxClipboard.parents[i] = graph.model.getParent(cells[i]);
-            }
-
-            mxClipboard.insertCount = 1;
-            mxClipboard.setCells(graph.cloneCells(result));
-
-            return result;
-        };
-
-        mxClipboard.paste = function(graph) {
-            if (!mxClipboard.isEmpty()) {
-                var cells = graph.getImportableCells(mxClipboard.getCells());
-                var delta = mxClipboard.insertCount * mxClipboard.STEPSIZE;
-                var parent = graph.getDefaultParent();
-
-                graph.model.beginUpdate();
-                try {
-                    for (var i = 0; i < cells.length; i++) {
-                        var tmp = (mxClipboard.parents != null && graph.model.contains(mxClipboard.parents[i])) ?
-                            mxClipboard.parents[i] : parent;
-                        cells[i] = graph.importCells([cells[i]], delta, delta, tmp)[0];
-                    }
-                } finally {
-                    graph.model.endUpdate();
-                }
-
-                // Increments the counter and selects the inserted cells
-                mxClipboard.insertCount++;
-                graph.setSelectionCells(cells);
-            }
-        };*/
     }
 }
 
