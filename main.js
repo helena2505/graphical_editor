@@ -5,9 +5,6 @@ function main() {
         // not supported.
         mxUtils.error('Browser is not supported!', 200, false);
     } else {
-        // Defines an icon for creating new connections in the connection handler.
-        // This will automatically disable the highlighting of the source vertex.
-        mxConnectionHandler.prototype.connectImage = new mxImage('mxgraph-4.0.6/javascript/src/images/connector.gif', 16, 16)
         mxVertexHandler.prototype.rotationEnabled = true;
 
         let tbContainer = document.getElementById('palette-zone');
@@ -141,7 +138,7 @@ function main() {
             }
         }));
 
-        mxClipboard.copy = function(graph, cells) {
+        /*mxClipboard.copy = function(graph, cells) {
             cells = cells || graph.getSelectionCells();
             let result = graph.getExportableCells(cells);
 
@@ -178,7 +175,7 @@ function main() {
                 mxClipboard.insertCount++;
                 graph.setSelectionCells(cells);
             }
-        };
+        };*/
     }
 }
 
